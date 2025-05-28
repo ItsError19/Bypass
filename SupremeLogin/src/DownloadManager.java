@@ -9,15 +9,19 @@ import java.util.*;
 
 public class DownloadManager extends JFrame {
     // Color scheme
-    private final Color PRIMARY_COLOR = new Color(40, 53, 147);
-    private final Color SECONDARY_COLOR = new Color(25, 118, 210);
-    private final Color ACCENT_COLOR = new Color(255, 171, 64);
-    private final Color BACKGROUND_COLOR = new Color(245, 245, 245);
-    private final Color CARD_COLOR = Color.WHITE;
-    private final Color TEXT_PRIMARY = new Color(33, 33, 33);
-    private final Color TEXT_SECONDARY = new Color(117, 117, 117);
-    private final Color SUCCESS_COLOR = new Color(46, 125, 50);
-    private final Color ERROR_COLOR = new Color(198, 40, 40);
+	private final Color PRIMARY_COLOR = new Color(40, 53, 147);         // Indigo (Dark Blue)
+	private final Color SECONDARY_COLOR = new Color(25, 118, 210);      // Medium Blue / Material Blue 700
+	private final Color ACCENT_COLOR = new Color(255, 171, 64);         // Amber / Orange Accent
+	private final Color BACKGROUND_COLOR = new Color(245, 245, 245);    // Light Gray / Almost White
+	private final Color CARD_COLOR = Color.WHITE;                       // White
+	private final Color TEXT_PRIMARY = new Color(0, 0, 0);              // Pure Black
+	private final Color TEXT_SECONDARY = new Color(51, 51, 51);         // Dark Gray
+
+	private final Color SUCCESS_COLOR = new Color(46, 125, 50);         // Green / Material Green 700
+	private final Color ERROR_COLOR = new Color(198, 40, 40);           // Red / Material Red 800
+	// Define darker background colors
+	private final Color DARK_SECONDARY_COLOR = new Color(13, 71, 161); // Dark Blue (Material Blue 900)
+	private final Color DARK_ERROR_COLOR = new Color(183, 28, 28);     // Dark Red (Material Red 900)
 
     // UI Components
     private JTextField urlField;
@@ -33,7 +37,7 @@ public class DownloadManager extends JFrame {
     private DownloadTask currentDownload;
 
     public DownloadManager() {
-        setTitle("ESL Download Manager");
+        setTitle("{ESL/} Download Manager");
         setSize(1000, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -73,7 +77,7 @@ public class DownloadManager extends JFrame {
         headerPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
         
         // App title
-        JLabel titleLabel = new JLabel("ESL INTERNET DOWNLOAD MANAGER");
+        JLabel titleLabel = new JLabel("{ESL/} INTERNET DOWNLOAD MANAGER");
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
         titleLabel.setForeground(Color.WHITE);
         
@@ -120,7 +124,7 @@ public class DownloadManager extends JFrame {
         ));
         
         downloadButton = new JButton("START DOWNLOAD");
-        styleButton(downloadButton, ACCENT_COLOR, Color.WHITE);
+        styleButton(downloadButton, ACCENT_COLOR, Color.BLACK);
         downloadButton.addActionListener(e -> startDownload());
         
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -168,7 +172,7 @@ public class DownloadManager extends JFrame {
         locationValue.setForeground(TEXT_SECONDARY);
         
         JButton changeLocationBtn = new JButton("Change");
-        styleButton(changeLocationBtn, SECONDARY_COLOR, Color.WHITE);
+        styleButton(changeLocationBtn, SECONDARY_COLOR, Color.BLACK);
         changeLocationBtn.setFont(new Font("Segoe UI", Font.PLAIN, 11));
         changeLocationBtn.setPreferredSize(new Dimension(80, 25));
         changeLocationBtn.addActionListener(e -> changeDownloadLocation());
@@ -186,13 +190,14 @@ public class DownloadManager extends JFrame {
         actionPanel.setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 0));
         actionPanel.setOpaque(false);
         
+     // Buttons using darker backgrounds
         pauseButton = new JButton("PAUSE");
-        styleButton(pauseButton, SECONDARY_COLOR, Color.WHITE);
+        styleButton(pauseButton, DARK_SECONDARY_COLOR, Color.WHITE); // White text for contrast
         pauseButton.setEnabled(false);
         pauseButton.addActionListener(e -> pauseDownload());
-        
+
         cancelButton = new JButton("CANCEL");
-        styleButton(cancelButton, ERROR_COLOR, Color.WHITE);
+        styleButton(cancelButton, DARK_ERROR_COLOR, Color.WHITE); // White text for contrast
         cancelButton.setEnabled(false);
         cancelButton.addActionListener(e -> cancelDownload());
         
